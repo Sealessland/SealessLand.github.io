@@ -1,0 +1,223 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Scala | SealessLand's Blog</title><noscript>开启JavaScript才能访问本站哦~</noscript><link rel="icon" href="/img/pwa/favicon.ico"><!-- index.css--><link rel="stylesheet" href="/css/index.css?v=2.0.9"><!-- inject head--><link rel="canonical" href="https://sealessland.github.io/2024/08/19/UESTC%20%E8%AF%BE%E7%A8%8B%E6%80%BB%E7%BB%93/Scala/"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"><!-- aplayer--><!-- swiper--><!-- fancybox ui--><!-- katex--><!-- Open Graph--><meta name="description" content="classclass 定义了一种可以实例化的规则，可以创造同一个class的多个实例。class的定义方式如下 123456789class Calculator &amp;#123; val brand: String &amp;#x3D; &amp;quot;HP&amp;quot; def add(a: Int, b: In"><!-- pwa--><meta name="apple-mobile-web-app-capable" content="SealessLand's Blog"><meta name="theme-color" content="var(--efu-main)"><meta name="apple-mobile-web-app-status-bar-style" content="var(--efu-main)"><link rel="bookmark" href="/img/pwa/favicon.ico"><link rel="apple-touch-icon" href="/img/pwa/favicon.ico" sizes="180x180"><script>console.log(' %c Solitude %c ' + '2.0.9' + ' %c https://github.com/everfu/hexo-theme-solitude',
+    'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
+    'background:#ff9a9a ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff',
+    'background:unset ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff')
+</script><script>(()=>{
+        const saveToLocal = {
+            set: function setWithExpiry(key, value, ttl) {
+                if (ttl === 0)
+                    return
+                const now = new Date()
+                const expiryDay = ttl * 86400000
+                const item = {
+                    value: value,
+                    expiry: now.getTime() + expiryDay
+                }
+                localStorage.setItem(key, JSON.stringify(item))
+            },
+            get: function getWithExpiry(key) {
+                const itemStr = localStorage.getItem(key)
+    
+                if (!itemStr) {
+                    return undefined
+                }
+                const item = JSON.parse(itemStr)
+                const now = new Date()
+    
+                if (now.getTime() > item.expiry) {
+                    localStorage.removeItem(key)
+                    return undefined
+                }
+                return item.value
+            }
+        };
+        window.utils = {
+            saveToLocal: saveToLocal,
+            getCSS: (url, id = false) => new Promise((resolve, reject) => {
+              const link = document.createElement('link')
+              link.rel = 'stylesheet'
+              link.href = url
+              if (id) link.id = id
+              link.onerror = reject
+              link.onload = link.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                link.onload = link.onreadystatechange = null
+                resolve()
+              }
+              document.head.appendChild(link)
+            }),
+            getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+              const script = document.createElement('script')
+              script.src = url
+              script.async = true
+              script.onerror = reject
+              script.onload = script.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                script.onload = script.onreadystatechange = null
+                resolve()
+              }
+    
+              Object.keys(attr).forEach(key => {
+                script.setAttribute(key, attr[key])
+              })
+    
+              document.head.appendChild(script)
+            }),
+            addGlobalFn: (key, fn, name = false, parent = window) => {
+                const globalFn = parent.globalFn || {}
+                const keyObj = globalFn[key] || {}
+        
+                if (name && keyObj[name]) return
+        
+                name = name || Object.keys(keyObj).length
+                keyObj[name] = fn
+                globalFn[key] = keyObj
+                parent.globalFn = globalFn
+            },
+        }
+    })()</script><!-- global head--><script>const GLOBAL_CONFIG = {
+    root: '/',
+    algolia: undefined,
+    localsearch: undefined,
+    runtime: '2023-04-20 00:00:00',
+    lazyload: {
+        enable: false,
+        error: '/img/error_load.avif'
+    },
+    copyright: false,
+    highlight: {"limit":200,"expand":true,"copy":true,"syntax":"highlight.js"},
+    randomlink: false,
+    lang: {"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"day":"天前","hour":"小时前","just":"刚刚","min":"分钟前","month":"个月前"},"day":" 天","f12":"开发者模式已打开，请遵循GPL协议。","totalk":"无需删除空行，直接输入评论即可"},
+    aside: {
+        sayhello: {
+            morning: "✨ Good morning. It's a new day",
+            noon: "It's time for a midday break",
+            afternoon: "Tea time. 🍵",
+            night: "early bedtime",
+            goodnight: "Good night 😴",
+        },
+        sayhello2: [],
+        sayhello3: {
+            prefix: '好久不见，',
+            back: '欢迎再次回来，',
+        },
+    },
+    covercolor: {
+        enable: false
+    },
+    comment: false,
+    lightbox: 'null',
+    post_ai: false,
+    right_menu: false,
+    lure: false,
+    expire: false,
+};</script><!-- page-config head--><script id="config-diff">var PAGE_CONFIG = {
+    is_post: true,
+    is_page: false,
+    is_home: false,
+    page: '',
+    toc: true,
+    comment: false,
+    ai_text: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body id="body"><!-- universe--><!-- background img--><!-- loading--><!-- console--><!-- sidebar--><div id="sidebar" style="zoom: 1;"><div id="menu-mask" style="display: none;"></div><div id="sidebar-menus"><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a></div></div></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><span class="darkmode_switchbutton menu-child" onclick="sco.switchDarkMode()"><i class="solitude fa-solid fa-circle-half-stroke"></i><span>显示模式</span></span></div><span class="sidebar-menu-item-title">标签</span><div class="card-widget card-tags card-archives card-webinfo card-allinfo"><div class="card-tag-cloud"></div></div></div></div><!-- keyboard--><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav class="show" id="nav"><div id="nav-group"><div id="blog_name"><a id="site-name" href="/" title="返回博客主页"><span class="title">Solitude</span><i class="solitude fa-solid fa-home"></i></a></div><div id="page-name-mask"><div id="page-name"><a id="page-name-text" onclick="sco.toTop()">Scala</a></div></div><div id="menus"></div><div id="nav-left"></div><div id="nav-right"><div class="nav-button" id="nav-totop" onclick="sco.toTop()"><a class="totopbtn"><i class="solitude fa-solid fa-arrow-up"></i><span id="percent">0</span></a></div><div id="toggle-menu"><a class="site-page"><i class="solitude fa-solid fa-bars"></i></a></div></div></div></nav><div class="coverdiv" id="coverdiv"><img class="nolazyload" id="post-cover" src="/img/default.avif" alt="Scala"></div><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original" title="该文章为原创文章，注意版权协议">原创</a><div class="tag_share"><div class="post-meta__tag-list"></div></div></div></div><h1 class="post-title">Scala</h1><div id="post-meta"><div class="meta-secondline"></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="class"><a href="#class" class="headerlink" title="class"></a>class</h2><p>class  定义了一种可以实例化的规则，可以创造同一个class的多个实例。<br>class的定义方式如下</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Calculator</span> </span>&#123;</span><br><span class="line">  <span class="keyword">val</span> brand: <span class="type">String</span> = <span class="string">&quot;HP&quot;</span></span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add</span></span>(a: <span class="type">Int</span>, b: <span class="type">Int</span>): <span class="type">Int</span> = &#123;</span><br><span class="line">    a + b</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>通过new生成一个实例并调用</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> calc = <span class="keyword">new</span> <span class="type">Caculator</span></span><br><span class="line">calc.add(<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>class之间可以使用extends进行继承</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">hello</span></span>(): <span class="type">Unit</span> = println(<span class="string">&quot;Hello from Parent&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">hello</span></span>(): <span class="type">Unit</span> = println(<span class="string">&quot;Hello from Child&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中 override关键字表示在子类中重写父类的方法<br>每个使用new实例化的class之间并不会相互影响<br>在类的实现中可以定义尚未实现的方法 ，使用关键字 abstract class</p>
+<h2 id="Traits"><a href="#Traits" class="headerlink" title="Traits"></a>Traits</h2><p>特质是一种字段和行为的集合，可以用来模块化的构建一个类</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">ExampleTrait</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 字段</span></span><br><span class="line">  <span class="keyword">val</span> traitField: <span class="type">Int</span> = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 抽象方法</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">abstractMethod</span></span>: <span class="type">Unit</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 具体方法</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">concreteMethod</span></span>: <span class="type">Unit</span> = println(<span class="string">&quot;This is a concrete method in ExampleTrait.&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleClass</span> <span class="keyword">extends</span> <span class="title">ExampleTrait</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 实现特质中的抽象方法</span></span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">abstractMethod</span></span>: <span class="type">Unit</span> = println(<span class="string">&quot;This is an implementation of abstractMethod in ExampleClass.&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="方法和函数"><a href="#方法和函数" class="headerlink" title="方法和函数"></a>方法和函数</h2><p>方法是在类中定义，使用def关键字，形如</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">myMethod</span></span>(x: <span class="type">Int</span>): <span class="type">Int</span> = x * x  <span class="comment">// 定义一个方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>函数使用val关键字，就像声明一个数据一样</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> myFunction: <span class="type">Int</span> =&gt; <span class="type">Int</span> = x =&gt; x * x  <span class="comment">// 定义一个函数</span></span><br></pre></td></tr></table></figure>
+<p>显而易见，函数和方法的作用域不同</p>
+<h2 id="Apply"><a href="#Apply" class="headerlink" title="Apply"></a>Apply</h2><p>在调用一个类而不作出指定的时候，Scala默认调用了apply方法</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">apply</span></span>(x: <span class="type">Int</span>) = x * x</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> foo = <span class="keyword">new</span> <span class="type">Foo</span></span><br><span class="line">println(foo(<span class="number">5</span>))  <span class="comment">// 输出 25，等价于 foo.apply(5)</span></span><br></pre></td></tr></table></figure>
+<h2 id="包"><a href="#包" class="headerlink" title="包"></a>包</h2><p>你可以将代码组织在包里。</p>
+<p>package com.twitter.example</p>
+<p>在文件头部定义包，会将文件中所有的代码声明在那个包中。</p>
+<p><strong>值和函数不能在类或单例对象之外定义</strong></p>
+<h2 id="模式匹配"><a href="#模式匹配" class="headerlink" title="模式匹配"></a>模式匹配</h2><p>val time &#x3D;1<br>time match {<br>case 1 &#x3D;&gt; “one”<br>case 2&#x3D;&gt; “two”<br>case _ &#x3D;&gt;  “no”&#x2F;&#x2F;as a default<br>}</p>
+<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h1 id="Scala-集合简介"><a href="#Scala-集合简介" class="headerlink" title="Scala 集合简介"></a>Scala 集合简介</h1><h2 id="数组-Array"><a href="#数组-Array" class="headerlink" title="数组 Array"></a>数组 Array</h2><p>数组是有序的，可以包含重复项，并且是可变的。例如：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> numbers = <span class="type">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line">numbers(<span class="number">3</span>) = <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="列表-List"><a href="#列表-List" class="headerlink" title="列表 List"></a>列表 List</h2><p>列表也是有序的，可以包含重复项，但是它是不可变的。例如：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> numbers = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="集合-Set"><a href="#集合-Set" class="headerlink" title="集合 Set"></a>集合 Set</h2><p>集合是无序的，且不可包含重复项。例如：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> numbers = <span class="type">Set</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="元组-Tuple"><a href="#元组-Tuple" class="headerlink" title="元组 Tuple"></a>元组 Tuple</h2><p>元组可以将多个元素组合成一个单一的，有序的集合。元组中的元素可以是不同类型，且元组本身是不可变的。例如：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> hostPort = (<span class="string">&quot;localhost&quot;</span>, <span class="number">80</span>)</span><br></pre></td></tr></table></figure>
+
+<p>元组可以很好地与模式匹配相结合：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hostPort <span class="keyword">match</span> &#123;</span><br><span class="line">  <span class="keyword">case</span> (<span class="string">&quot;localhost&quot;</span>, port) =&gt; ...</span><br><span class="line">  <span class="keyword">case</span> (host, port) =&gt; ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="函数组合子"><a href="#函数组合子" class="headerlink" title="函数组合子"></a>函数组合子</h1><h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><p>map对列表中的每一个元素应用一个函数，返回一个应用后产生的新表</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> numbers= <span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line">numbers.map((i:<span class="type">Int</span>)=&gt;i*<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p>或者传入一个函数like</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">timesTow</span></span>(i:<span class="type">Int</span>):<span class="type">Int</span> =i*<span class="number">2</span></span><br><span class="line">numbers.map(timesTow)</span><br><span class="line"><span class="type">List</span>[<span class="type">Int</span>]=<span class="type">List</span>(<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h2><p>filter移除对传入函数结果为false的元素。返回一个布尔值的函数通常称为判定函数</p>
+<h2 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h2><p>zip将两个列表的内容聚合到一个列表中</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>).zip(<span class="type">List</span>(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>))</span><br><span class="line">res0: <span class="type">List</span>[(<span class="type">Int</span>, <span class="type">String</span>)] = <span class="type">List</span>((<span class="number">1</span>,a), (<span class="number">2</span>,b), (<span class="number">3</span>,c))</span><br></pre></td></tr></table></figure>
+
+<h2 id="partition"><a href="#partition" class="headerlink" title="partition"></a>partition</h2><p>partition使用给定的判断函数分割一份列表</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">val</span> numbers = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>)</span><br><span class="line">scala&gt; numbers.partition(_ % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">res0: (<span class="type">List</span>[<span class="type">Int</span>], <span class="type">List</span>[<span class="type">Int</span>]) = (<span class="type">List</span>(<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>),<span class="type">List</span>(<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>))</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="drop-dropWhile"><a href="#drop-dropWhile" class="headerlink" title="drop &amp; dropWhile"></a>drop &amp; dropWhile</h2><p>drop删除前i个元素<br>dropWhile删除<strong>第一个匹配</strong>（true）的元素</p>
+<h2 id="foldLeft-foldRight"><a href="#foldLeft-foldRight" class="headerlink" title="foldLeft&amp;foldRight"></a>foldLeft&amp;foldRight</h2><p><code>foldLeft</code> 和 <code>foldRight</code> 都是 Scala 集合中的折叠操作，它们用于将集合中的元素与初始值（也称为“种子”值）结合起来，生成一个单一的结果。这两个操作的主要区别在于它们的遍历方向。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> numbers = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line"><span class="keyword">val</span> result = numbers.foldLeft(<span class="number">0</span>)(_ + _)</span><br></pre></td></tr></table></figure>
+<h2 id="flatten"><a href="#flatten" class="headerlink" title="flatten"></a>flatten</h2><p>flatten 将嵌套结构扁平化一个层级</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> numbers = <span class="type">List</span>(<span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>), <span class="type">List</span>(<span class="number">3</span>, <span class="number">4</span>))</span><br><span class="line"><span class="keyword">val</span> flattened = numbers.flatten</span><br><span class="line">falttened==<span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h1><h2 id="Runnable-Callable"><a href="#Runnable-Callable" class="headerlink" title="Runnable&#x2F;Callable"></a>Runnable&#x2F;Callable</h2><p>Runnable接口只有一个方法</p>
+</article><div class="post-copyright"><div class="post-copyright__author_group"><a class="post-copyright__author_img" href="/about/"><img class="post-copyright__author_img_front" src="/img/pwa/favicon.ico"></a><div class="post-copyright__author_name">SealessLand's Blog</div><div class="post-copyright__author_desc">UESTC-EE-2023</div></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div id="quit-box" onclick="RemoveRewardMask()"></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>协议，完整转载请注明来自<a href="/">SealessLand's Blog</a></span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__tag-list"></div></div></div><nav class="needEndHide pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2024/08/28/UESTC%20%E8%AF%BE%E7%A8%8B%E6%80%BB%E7%BB%93/%E5%BE%AE%E7%A7%AF%E5%88%86/"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Untitled</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><div class="author-info__top-group"><div class="author-info__sayhi" id="author-info__sayhi" onclick="sco.changeSayHelloText()">sayhello.morning</div></div></div><div class="avatar-img-group"><img class="avatar-img" alt="头像" src="/img/avatar.avif"></div><div class="author-info__description_group"><div class="author-info__description"></div><div class="author-info__description2"></div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/about/"><div class="author-info__name">SealessLand</div><div class="author-info__desc">UESTC-EE-2023</div></a><div class="card-info-social-icons is-center"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="solitude fa-solid fa-bars"></i><span>文章目录</span></div><div class="toc-content" id="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#class"><span class="toc-text">class</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Traits"><span class="toc-text">Traits</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%92%8C%E5%87%BD%E6%95%B0"><span class="toc-text">方法和函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apply"><span class="toc-text">Apply</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%85"><span class="toc-text">包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D"><span class="toc-text">模式匹配</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-text">数据结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Scala-%E9%9B%86%E5%90%88%E7%AE%80%E4%BB%8B"><span class="toc-text">Scala 集合简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84-Array"><span class="toc-text">数组 Array</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E8%A1%A8-List"><span class="toc-text">列表 List</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%86%E5%90%88-Set"><span class="toc-text">集合 Set</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E7%BB%84-Tuple"><span class="toc-text">元组 Tuple</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E7%BB%84%E5%90%88%E5%AD%90"><span class="toc-text">函数组合子</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#map"><span class="toc-text">map</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#filter"><span class="toc-text">filter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zip"><span class="toc-text">zip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#partition"><span class="toc-text">partition</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#drop-dropWhile"><span class="toc-text">drop &amp; dropWhile</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#foldLeft-foldRight"><span class="toc-text">foldLeft&amp;foldRight</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#flatten"><span class="toc-text">flatten</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91"><span class="toc-text">并发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Runnable-Callable"><span class="toc-text">Runnable&#x2F;Callable</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="solitude fa-solid fa-map"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/09/03/UESTC%20class%20Temp/5%E8%AF%BE%E8%A1%A8FRI/" title="Untitled"><img alt="Untitled" src="/img/default.avif"></a><div class="content"><span class="title" href="/2024/09/03/UESTC%20class%20Temp/5%E8%AF%BE%E8%A1%A8FRI/" title="Untitled">Untitled</span></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/03/UESTC%20class%20Temp/6%E8%AF%BE%E8%A1%A8SAT/" title="Untitled"><img alt="Untitled" src="/img/default.avif"></a><div class="content"><span class="title" href="/2024/09/03/UESTC%20class%20Temp/6%E8%AF%BE%E8%A1%A8SAT/" title="Untitled">Untitled</span></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/03/UESTC%20class%20Temp/7%E8%AF%BE%E8%A1%A8SUN/" title="Untitled"><img alt="Untitled" src="/img/default.avif"></a><div class="content"><span class="title" href="/2024/09/03/UESTC%20class%20Temp/7%E8%AF%BE%E8%A1%A8SUN/" title="Untitled">Untitled</span></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/03/UESTC%20class%20Temp/4%E8%AF%BE%E8%A1%A8THUR/" title="Untitled"><img alt="Untitled" src="/img/default.avif"></a><div class="content"><span class="title" href="/2024/09/03/UESTC%20class%20Temp/4%E8%AF%BE%E8%A1%A8THUR/" title="Untitled">Untitled</span></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/03/UESTC%20class%20Temp/3%E8%AF%BE%E8%A1%A8WEN/" title="Untitled"><img alt="Untitled" src="/img/default.avif"></a><div class="content"><span class="title" href="/2024/09/03/UESTC%20class%20Temp/3%E8%AF%BE%E8%A1%A8WEN/" title="Untitled">Untitled</span></div></div></div></div></div></div></main><footer id="footer"><div id="footer_deal"></div><div id="st-footer"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div class="copyright">© 2023 - 2024 By&nbsp;<a class="footer-bar-link" href="/">SealessLand</a></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/everfu/hexo-theme-solitude" alt="Theme">Theme</a></div></div></div></footer></div><!-- right_menu--><!-- inject body--><div><script src="/js/utils.js?v=2.0.9"></script><script src="/js/main.js?v=2.0.9"></script><script src="/js/third_party/waterfall.min.js?v=2.0.9"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pjax/0.2.8/pjax.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/node-snackbar/0.1.16/snackbar.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script><div class="js-pjax"></div></div><!-- pjax--><script>const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: ['title','#body-wrap','#site-config','meta[name="description"]','.js-pjax','meta[property^="og:"]','#config-diff'],
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+})
+
+document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+})
+
+document.addEventListener('pjax:complete', () => {
+    window.refreshFn()
+
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+        const newScript = document.createElement('script')
+        const content = item.text || item.textContent || item.innerHTML || ""
+        Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+        newScript.appendChild(document.createTextNode(content))
+        item.parentNode.replaceChild(newScript, item)
+    })
+
+    GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+        pjax.loadUrl('/404.html')
+    }
+})</script><!-- theme--><script>initTheme = () => {
+    let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const cachedMode = utils.saveToLocal.get('theme');
+    if (cachedMode === undefined) {
+        const nowMode =
+            isDarkMode ? 'dark' : 'light'
+        document.documentElement.setAttribute('data-theme', nowMode);
+    } else {
+        document.documentElement.setAttribute('data-theme', cachedMode);
+    }
+    typeof rm === 'object' && rm.mode(cachedMode === 'dark' && isDarkMode)
+}
+initTheme()</script><!-- google adsense--><!-- search--><!-- Tianli-Talk--><!-- music--></body></html><script>const posts=["2024/09/03/UESTC class Temp/5课表FRI/","2024/09/03/UESTC class Temp/6课表SAT/","2024/09/03/UESTC class Temp/7课表SUN/","2024/09/03/UESTC class Temp/4课表THUR/","2024/09/03/UESTC class Temp/3课表WEN/","2024/09/03/UESTC class Temp/2课表TUE/","2024/09/03/未命名/","2024/09/03/UESTC WEEKLY NOTE/WEEK-1 周三/","2024/09/03/UESTC class Temp/1课表Mon/","2024/09/03/UESTC 课程总结/电路分析/","2024/08/28/UESTC 课程总结/微积分/","2024/08/19/UESTC 课程总结/Scala/"];function toRandomPost(){ pjax.loadUrl(GLOBAL_CONFIG.root+posts[Math.floor(Math.random()*posts.length)]); }</script>
